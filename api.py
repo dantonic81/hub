@@ -11,7 +11,9 @@ DATA_FILE_PATH = 'event_data.json'
 # Load existing data from the file
 try:
     with open(DATA_FILE_PATH, 'r') as file:
-        event_store = json.load(file)
+        # Check if the file is empty
+        file_contents = file.read()
+        event_store = json.loads(file_contents) if file_contents else []
 except FileNotFoundError:
     event_store = []
 
